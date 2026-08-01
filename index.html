@@ -179,7 +179,8 @@
                 const base64Data = await fileToBase64(file);
 
                 // 2. Prepare the prompt and payload for Gemini API
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+                // Updated to gemini-3.6-flash for faster execution and document analytical quality
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`;
                 
                 const promptText = `
 You are an expert Research Administrator. Review the attached Notice of Funding Opportunity (NOFO) / Request for Applications (RFA). 
@@ -212,10 +213,7 @@ Organize the output beautifully using Markdown headers, lists, and tables so it 
                                 }
                             }
                         ]
-                    }],
-                    generationConfig: {
-                        temperature: 0.1 // Keep it analytical and factual
-                    }
+                    }]
                 };
 
                 // 3. Make the API request
