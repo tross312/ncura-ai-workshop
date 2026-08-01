@@ -85,7 +85,7 @@
                 </div>
 
                 <div id="resultState" class="hidden markdown-body text-slate-800">
-                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -176,8 +176,7 @@
                 const base64Data = await fileToBase64(file);
 
                 // 2. Prepare the prompt and payload for Gemini API
-                // Using gemini-3.1-flash-lite for maximum speed and cost-efficiency
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`;
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
                 
                 const promptText = `
 You are an expert Research Administrator. Review the attached Notice of Funding Opportunity (NOFO) / Request for Applications (RFA). 
@@ -185,11 +184,16 @@ Your task is to generate a highly detailed and structured "Pre-Award Checklist" 
 
 Please include:
 1. Basic Details: Funding agency, grant title, mechanism/opportunity number, and all critical deadlines (Letter of Intent, Full Application, Internal deadlines if implied).
-2. Formatting Rules: Font size, margins, spacing, and any specific system requirements (e.g., ASSIST, Workspace, Research.gov).
-3. Required Documents & Forms: Provide a clear, tabular or bulleted checklist of every required document (e.g., Project Summary, Research Strategy, Biosketches, Budget, Facilities). 
+2. Institutional Eligibility Determination (UGA / UGARF):
+   Evaluate whether the opportunity allows applications from:
+   - **University of Georgia (UGA)** as a Public State Institution / Public Higher Education Institution.
+   - **University of Georgia Research Foundation, Inc. (UGARF)** as a Non-Profit 501(c)(3) Entity / University-Affiliated Foundation.
+   Provide a clear summary statement confirming eligibility for both entities based on Section III (Eligibility Information) of the document.
+3. Formatting Rules: Font size, margins, spacing, and any specific system requirements (e.g., ASSIST, Workspace, Research.gov).
+4. Required Documents & Forms: Provide a clear, tabular or bulleted checklist of every required document (e.g., Project Summary, Research Strategy, Biosketches, Budget, Facilities). 
    - For each document, list the specific page limits.
    - For each document, list specific nuances or instructions mentioned in the RFA.
-4. Budget Rules: Cost-sharing requirements, indirect cost (F&A) limits, or salary caps.
+5. Budget Rules: Cost-sharing requirements, indirect cost (F&A) limits, or salary caps.
 
 Organize the output beautifully using Markdown headers, lists, and tables so it is easy to read.
 `;
